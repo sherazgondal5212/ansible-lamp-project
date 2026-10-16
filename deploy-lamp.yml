@@ -1,0 +1,13 @@
+---
+- name: Automated LAMP Stack Deployment on AWS EC2
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Apache
+      dnf:
+        name: httpd
+        state: present
+    - name: Create info.php
+      copy:
+        content: "<?php phpinfo(); ?>"
+        dest: /var/www/html/info.php
